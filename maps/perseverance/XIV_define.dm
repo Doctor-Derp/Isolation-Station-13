@@ -27,11 +27,11 @@
 	allowed_spawns = list("Cryogenic Storage")
 	default_spawn = "Cryogenic Storage"
 
-	evac_controller_type = /datum/evacuation_controller/starship
+	evac_controller_type = /datum/evacuation_controller/bsship
 
 	shuttle_docked_message = "Attention all hands: Jump preparation complete. The bluespace drive is now spooling up, secure all stations for departure. Time to jump: approximately %ETD%."
 	shuttle_leaving_dock = "Attention all hands: Jump initiated, exiting bluespace in %ETA%."
-	shuttle_called_message = "Attention all hands: Jump sequence initiated. Transit procedures are now in effect. Jump in %ETA%."
+	shuttle_called_message = "Attention all hands: Jump sequence initiated. Transit procedures are now in effect. Jump pre-spoolup preperations complete in %ETA%."
 	shuttle_recall_message = "Attention all hands: Jump sequence aborted, return to normal operating conditions."
 
 	use_overmap = 1
@@ -40,7 +40,7 @@
 	welcome_sound = 'sound/AI/welcome.ogg'
 
 	department_money = 0
-	salary_modifier = 0.4
+	salary_modifier = 0.6
 
 
 //Images 2-4 are from starsector, image 1 I have no idea, couldn't really find who made it, but it's def. Alien: Isolation themed

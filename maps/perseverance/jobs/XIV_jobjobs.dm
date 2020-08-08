@@ -14,7 +14,7 @@
 	alt_titles = list()
 	ideal_character_age = 30
 	outfit_type = /decl/hierarchy/outfit/job/isolation/manager
-	access = list(access_XIV, access_engine, access_bridge, access_medical, access_change_ids, access_engine_equip, access_tcomsat, access_network)
+	access = list(access_XIV, access_engine, access_bridge, access_medical, access_change_ids, access_engine_equip, access_tcomsat, access_network, access_atmospherics)
 	allowed_branches = list(
 		/datum/mil_branch/civilian
 	)
@@ -66,7 +66,7 @@
 	max_skill = list(   SKILL_PILOT       = SKILL_MAX,
 	                    SKILL_SCIENCE     = SKILL_MAX)
 
-	access = list(access_XIV, access_bridge, access_medical, access_engine_equip, access_tcomsat, access_network, access_engine)
+	access = list(access_XIV, access_bridge, access_medical, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics)
 	minimal_access = list()
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
@@ -177,7 +177,7 @@
 	                    SKILL_ENGINES      = SKILL_MAX)
 	skill_points = 18
 
-	access = list(access_XIV, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics)
+	access = list(access_XIV, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics, access_bridge)
 
 	software_on_spawn = list(/datum/computer_file/program/power_monitor,
 							 /datum/computer_file/program/supermatter_monitor,

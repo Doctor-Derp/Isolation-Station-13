@@ -214,7 +214,7 @@
 /obj/structure/vent/up
 	desc = "It's a vent. Really dark up there."
 	allowed_directions = UP
-	alpha = 60
+	alpha = 100
 
 /obj/structure/vent/up/distribution
 	icon_state = "ventdist"

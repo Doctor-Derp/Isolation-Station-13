@@ -182,7 +182,13 @@
 	sound_env = SMALL_ENCLOSED
 
 /area/ship/perseverance/bridge/selfdestruct
-	name = "\improper Perseverance Ship Destruct System"
+	name = "\improper Perseverance Self Destruct System"
 	icon_state = "nuke_storage"
 	req_access = list(access_XIV, access_bridge)
 	area_flags = AREA_FLAG_IS_NOT_PERSISTENT
+
+area/ship/perseverance/bridge/bluespacedrive
+	name = "\improper Perseverance Bluespace Drive"
+	icon_state = "engineering"
+	color = COLOR_BLUE_LIGHT
+	req_access = list(access_XIV, access_engine, access_bridge)

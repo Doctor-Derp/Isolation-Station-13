@@ -211,6 +211,9 @@
 /turf/simulated/floor/tiled/techfloor/grid/airless
 	initial_gas = null
 
+/turf/simulated/floor/tiled/dark/monotile/airless
+	initial_gas = null
+
 //SMES
 
 /obj/machinery/power/smes/buildable/preset/XIV
