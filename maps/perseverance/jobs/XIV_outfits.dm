@@ -1,12 +1,12 @@
 /decl/hierarchy/outfit/job/isolation
-	l_ear = /obj/item/device/radio/headset/contractor
 	flags = OUTFIT_HAS_BACKPACK
+	l_ear = /obj/item/device/radio/headset/contractor
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/radio //WE ARE POOR OKAY?
 
 //big boss
 /decl/hierarchy/outfit/job/isolation/manager
-	name = OUTFIT_JOB_NAME("Expedition Leader")
+	name = OUTFIT_JOB_NAME("Perseverance Expedition Leader")
 	uniform = /obj/item/clothing/under/XIV/xionplus
 	shoes = /obj/item/clothing/shoes/dutyboots
 	id_type = /obj/item/weapon/card/id/XIV/manager
@@ -14,7 +14,7 @@
 
 //little boss
 /decl/hierarchy/outfit/job/isolation/amanager
-	name = OUTFIT_JOB_NAME("Navigations Officer")
+	name = OUTFIT_JOB_NAME("Perseverance Navigations Officer")
 	uniform = /obj/item/clothing/under/XIV/xionplus
 	shoes = /obj/item/clothing/shoes/dutyboots
 	id_type = /obj/item/weapon/card/id/XIV/amanager
@@ -22,34 +22,26 @@
 //senior engineer
 /decl/hierarchy/outfit/job/isolation/senior_engineer
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
-	name = OUTFIT_JOB_NAME("Systems Engineer")
+	name = OUTFIT_JOB_NAME("Perseverance Systems Engineer")
 	uniform = /obj/item/clothing/under/XIV/xion
 	shoes = /obj/item/clothing/shoes/workboots
 	id_type = /obj/item/weapon/card/id/XIV/senior_engineer
 	gloves = /obj/item/clothing/gloves/thick/duty
 	belt = /obj/item/weapon/storage/belt/utility/full/XIV
 
-/decl/hierarchy/outfit/job/isolation/senior_engineer/New()
-	..()
-	BACKPACK_OVERRIDE_ENGINEERING
-
 //engineer
 /decl/hierarchy/outfit/job/isolation/techie
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
-	name = OUTFIT_JOB_NAME("Engineering Technician")
+	name = OUTFIT_JOB_NAME("Perseverance Engineering Technician")
 	uniform = /obj/item/clothing/under/XIV/xion
 	shoes = /obj/item/clothing/shoes/workboots
 	id_type = /obj/item/weapon/card/id/XIV/engineer
 	gloves = /obj/item/clothing/gloves/thick/duty
 	belt = /obj/item/weapon/storage/belt/utility/full/XIV
 
-/decl/hierarchy/outfit/job/isolation/techie/New()
-	..()
-	BACKPACK_OVERRIDE_ENGINEERING
-
 //doctor
 /decl/hierarchy/outfit/job/isolation/doctor
-	name = OUTFIT_JOB_NAME("Field Medic")
+	name = OUTFIT_JOB_NAME("Perseverance Field Physician")
 	uniform = /obj/item/clothing/under/rank/medical/XIV
 	shoes = /obj/item/clothing/shoes/white
 	id_type = /obj/item/weapon/card/id/XIV/doctor

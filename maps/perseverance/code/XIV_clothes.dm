@@ -1,12 +1,14 @@
 /obj/item/clothing/under/XIV
 	icon = 'maps/perseverance/icons/clothes/XIVitem.dmi'
 	item_icons = list(slot_w_uniform_str = 'maps/perseverance/icons/clothes/XIVunder.dmi')
+	sprite_sheets = list(
+		SPECIES_UNATHI = 'maps/perseverance/icons/clothes/XIVunathi.dmi'
+		)
 
 /obj/item/clothing/under/XIV/xion
 	name = "xion jumpsuit"
 	desc = "A relatively protecive utility jumpsuit produced by Xion Industries."
 	icon_state = "xion"
-	item_state = "xion"
 	worn_state = "xionsuit_s"
 	siemens_coefficient = 0.8
 	armor = list(
@@ -17,10 +19,8 @@
 	name = "xion padded suit"
 	desc = "A special suit used by higher-ranking xion employees."
 	icon = 'maps/perseverance/icons/clothes/XIVunder.dmi'
-	icon_state = "manage"
-	item_state = "manage"
-	worn_state = "manage"
-	gender_icons = 1
+	icon_state = "manage_s"
+	worn_state = "manage_s"
 	armor = list(
 		energy = ARMOR_ENERGY_SMALL,
 		rad = ARMOR_RAD_MINOR,
@@ -29,4 +29,4 @@
 		)
 
 /obj/item/clothing/under/rank/medical/XIV
-	name = "field physicians jumpsuit"
+	name = "field physician's jumpsuit"

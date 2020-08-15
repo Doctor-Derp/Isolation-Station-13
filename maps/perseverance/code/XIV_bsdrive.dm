@@ -1,7 +1,3 @@
-var/bsdrivestatus//I present to you, a global variable! It's a variable, except it's GLOBAL! Used in evacuation_bspods.dm
-//-1 = busy/shutting down, 0 = not ready/maybe ready, 1 = slowmode, 2 = quickmode, 3 = activated (slowmode), 4 = activated (quickmode), 5 = shutdown (slowmode), 6 = shutdown (quickmode), 7 = destroyed
-var/bsdelay// used in its evac controller, for changing the time needed for spoolup
-
 /obj/machinery/bluespacedrive
 	name = "Bluespace drive"
 	desc = "This complex device permits a safe entry into bluespace."

@@ -1,4 +1,8 @@
 //modified evacuation_pods code, for the perseverance, some of the stuff might not be completely necessary
+var/bsdrivestatus//I present to you, a global variable! It's a normal variable, except it's GLOBAL! Used to check and change the status of the bluespace drive
+//-1 = busy/shutting down, 0 = not ready/maybe ready, 1 = slowmode, 2 = quickmode, 3 = activated (slowmode), 4 = activated (quickmode), 5 = shutdown (slowmode), 6 = shutdown (quickmode), 7 = destroyed
+var/bsdelay//for changing the time needed for spoolup, used in XIV_bsdrive.dm, just like bsdrivestatus
+
 
 #define EVAC_OPT_ABANDON_BSSHIP "abandon_ship"
 #define EVAC_OPT_BS_JUMP "bluespace_jump"

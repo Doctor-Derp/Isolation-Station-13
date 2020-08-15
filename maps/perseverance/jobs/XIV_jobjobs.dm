@@ -14,7 +14,7 @@
 	alt_titles = list()
 	ideal_character_age = 30
 	outfit_type = /decl/hierarchy/outfit/job/isolation/manager
-	access = list(access_XIV, access_engine, access_bridge, access_medical, access_change_ids, access_engine_equip, access_tcomsat, access_network, access_atmospherics)
+	access = list(access_XIV, access_engine, access_bridge, access_medical, access_change_ids, access_engine_equip, access_tcomsat, access_network, access_atmospherics, access_research, access_robotics)
 	allowed_branches = list(
 		/datum/mil_branch/civilian
 	)
@@ -66,7 +66,7 @@
 	max_skill = list(   SKILL_PILOT       = SKILL_MAX,
 	                    SKILL_SCIENCE     = SKILL_MAX)
 
-	access = list(access_XIV, access_bridge, access_medical, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics)
+	access = list(access_XIV, access_bridge, access_medical, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics, access_research, access_robotics)
 	minimal_access = list()
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
@@ -177,7 +177,7 @@
 	                    SKILL_ENGINES      = SKILL_MAX)
 	skill_points = 18
 
-	access = list(access_XIV, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics, access_bridge)
+	access = list(access_XIV, access_engine_equip, access_tcomsat, access_network, access_engine, access_atmospherics, access_robotics)
 
 	software_on_spawn = list(/datum/computer_file/program/power_monitor,
 							 /datum/computer_file/program/supermatter_monitor,
@@ -199,7 +199,7 @@
 	total_positions = 4
 	spawn_positions = 4
 	hud_icon = "hudengineer"
-	supervisors = "the Expedition Leader and Navigation Officers"
+	supervisors = "the Expedition Leader, Navigation Officers and Systems Engineers"
 	selection_color = COLOR_DARK_BROWN
 	economic_power = 2
 	alt_titles = list()
@@ -225,7 +225,7 @@
 	                    SKILL_ENGINES      = SKILL_MAX)
 	skill_points = 18
 
-	access = list(access_XIV, access_engine_equip, access_engine, access_atmospherics)
+	access = list(access_XIV, access_engine_equip, access_engine, access_atmospherics, access_robotics)
 
 	software_on_spawn = list(/datum/computer_file/program/power_monitor,
 							 /datum/computer_file/program/supermatter_monitor,
@@ -236,7 +236,7 @@
 							 /datum/computer_file/program/shields_monitor)
 
 /datum/job/engineer/get_description_blurb()
-	return "You are the Ship Techinican, your job is to keep the ship operational, and clean. You are subordinate to the Expedition Leader and are expected to follow them."
+	return "You are the Ship Techinican, your job is to keep the ship operational, clean, and to assist Systems Engineers when needed. You are subordinate to the Expedition Leader and are expected to follow them."
 
 //crewman
 /datum/job/assistant

@@ -1,4 +1,4 @@
-// Lets see if copypaste makes it any easier (or at least less soul-sucking)
+// Copy-pasting makes it easier (and less soul-sucking)
 
 //--------------------------AIRLOCKS----------------------------------
 
@@ -182,6 +182,18 @@ obj/machinery/access_button/airlock_interior/XIV/saft
 //-------------------------TANK CONTROL-------------------------------
 
 obj/machinery/atmospherics/unary/vent_pump/tank/XIV
+	pressure_checks = 2
+	pressure_checks_default = 2
+	use_power = 1
+	internal_pressure_bound = 4000
+	internal_pressure_bound_default = 4000
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV
+	stock_part_presets = list(
+		/decl/stock_part_preset/radio/receiver/vent_pump/tank = 1,
+		/decl/stock_part_preset/radio/event_transmitter/vent_pump/tank = 1
+	)
+	controlled = FALSE
 	external_pressure_bound = 0
 	external_pressure_bound_default = 0
 	icon_state = "map_vent_in"
@@ -198,17 +210,9 @@ obj/machinery/atmospherics/unary/outlet_injector/XIV
 	icon_state = "map_injector"
 	use_power = 1
 
-obj/machinery/computer/air_control/XIV/bluespacedrive
-	input_tag = "bluespacedrive_in"
-	output_tag = "bluespacedrive_out"
-	name = "Bluespace drive air control"
-	sensor_name = "Bluespace drive air sensor"
-	sensor_tag = "bluespacedrive_sensor"
+//BS drive
 
-/obj/item/weapon/stock_parts/circuitboard/air_management/bluespacedrive
-	build_path = /obj/machinery/computer/air_control/XIV/bluespacedrive
-
-obj/machinery/atmospherics/unary/vent_pump/tank/XIV/bluespacedrive
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/bluespacedrive
 	id_tag = "bluespacedrive_out"
 
 obj/machinery/atmospherics/unary/outlet_injector/XIV/bluespacedrive
@@ -217,18 +221,88 @@ obj/machinery/atmospherics/unary/outlet_injector/XIV/bluespacedrive
 obj/machinery/air_sensor/XIV/bluespacedrive
 	id_tag = "bluespacedrive_sensor"
 
+//xenoflora, containment unit
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/xenoflora
+	id_tag = "xenoflora_out"
+	use_power = 0
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/xenoflora
+	id = "xenoflora_in"
+
+obj/machinery/air_sensor/XIV/xenoflora
+	id_tag = "xenoflora_sensor"
+
+//atmospherics, both air tanks
+
+obj/machinery/atmospherics/unary/vent_pump/tank/XIV/airtank1
+	id_tag = "airtank1_out"
+	pump_direction = 0
+	use_power = 0//backup tank, best keep it closed for now
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/airtank1
+	id = "airtank1_in"
+	volume_rate = 700
+	use_power = 0
+
+obj/machinery/air_sensor/XIV/airtank1
+	id_tag = "airtank1_sensor"
+
+obj/machinery/atmospherics/unary/vent_pump/tank/XIV/airtank2
+	id_tag = "airtank2_out"
+	pump_direction = 0
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/airtank2
+	id = "airtank2_in"
+	volume_rate = 700
+
+obj/machinery/air_sensor/XIV/airtank2
+	id_tag = "airtank2_sensor"
+
 //--------------------VENTILATION SYSTEMS-----------------------------
 
-/obj/machinery/atmospherics/unary/vent_pump/XIV/ventilation/output
-	use_power = 1
-	icon_state = "map_vent_out"
-	external_pressure_bound = 1.2 * ONE_ATMOSPHERE
+/obj/item/weapon/stock_parts/circuitboard/air_management/ventilation
+	build_path = /obj/machinery/computer/air_control/XIV/ventilation
 
-/obj/machinery/atmospherics/unary/vent_pump/XIV/ventilation/siphon
+/obj/machinery/computer/air_control/XIV/ventilation
+	out_pressure_mode = 1
+
+/obj/machinery/computer/air_control/XIV/ventilation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	data["systemname"] = name
+	get_console_data()
+	if(!ui)
+		ui = new(user, src, ui_key, "ventcontrol.tmpl", data["systemname"], 800, 800)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/atmospherics/unary/vent_pump/tank/XIV/ventilation
+	pressure_checks = 1
+	pressure_checks_default = 1
+	use_power = 0//due to big power draw, best activated manually
+
+/obj/machinery/atmospherics/unary/vent_pump/tank/XIV/ventilation/inlet
+	icon_state = "map_vent_out"
+	id_tag = "ventilation_in"
+	external_pressure_bound = 1.1 * ONE_ATMOSPHERE
+	external_pressure_bound_default = 1.1 * ONE_ATMOSPHERE
+	internal_pressure_bound_default = 1.1 * ONE_ATMOSPHERE//I can't believe this, but the consoles actually take this as the default pressure no matter if it's set to external or internal
+	use_power = 0
+
+obj/machinery/air_sensor/XIV/ventilation_inlet
+	id_tag = "VI_Sensor"
+
+/obj/machinery/atmospherics/unary/vent_pump/tank/XIV/ventilation/outlet
 	pump_direction = 0
-	use_power = 1
 	icon_state = "map_vent_in"
-	external_pressure_bound = 0.8 * ONE_ATMOSPHERE
+	id_tag = "ventilation_out"
+	external_pressure_bound = 0.9 * ONE_ATMOSPHERE
+	external_pressure_bound_default = 0.9 * ONE_ATMOSPHERE
+	internal_pressure_bound_default = 1.1 * ONE_ATMOSPHERE
+
+obj/machinery/air_sensor/XIV/ventilation_outlet
+	id_tag = "VO_Sensor"
 
 //--------------------------FUEL MIXERS------------------------------
 

@@ -1,0 +1,62 @@
+{{:helper.link('Data', null, {'set_screen' : 1}, data.screen == 1 ? 'selected' : null)}}
+{{:helper.link('Settings', 'gear', {'set_screen' : 2}, data.screen == 2 ? 'selected' : null)}}<br>
+
+{{if data.screen == 1}}
+	{{if data.sensors}}
+		{{for data.sensors}}			
+			<b>{{:value.long_name}}</b><br>
+			{{if value.pressure}}
+				<B>Pressure:</B> {{:value.pressure}} kPa<br>
+			{{/if}}
+			{{if value.temperature}}
+				<B>Temperature:</B> {{:value.temperature}} K<br>
+			{{/if}}
+			{{if data.gasses}}
+				<B>Gas Composition:</B><br>
+				{{for data.gasses}}
+					{{:value.percent}}% {{:value.symbol}}<br>
+				{{empty}}
+					<B>No gasses detected.</B><br>
+				{{/for}}
+			{{/if}}
+		{{empty}}
+			<span class='brute'>{{:value.long_name}} cannot be found!</span><br>
+		{{/for}}
+	{{else}}
+		There are no connected sensors.
+	{{/if}}
+	<hr>
+	{{if data.control == 1}}
+		<table>
+			<tr><td><b>Tank Control System</b></td></tr>
+			{{if data.automation == 1}}
+				<tr><td>Automation Status:</td><td><span class = 'toxin'>Online</td><td>{{:helper.link('Toggle Automation', null, {'toggle_automation' : 1})}}</td></tr>
+			{{else data.automation == 0}}
+				<tr><td>Automation Status:</td><td><span class = 'brute'>Offline</td><td>{{:helper.link('Toggle Automation', null, {'toggle_automation' : 1})}}</td></tr>
+			{{/if}}
+		{{if data.out_pressure_mode}}
+			{{if data.output_present}}
+				<tr><td><b>Vent Status:</b></td><td>
+					{{if data.out_power}}
+						<span class='toxin'>Open</span>
+					{{else}}
+						<span class='brute'>On Hold</span>
+					{{/if}}					
+				<tr><td><b>Target Pressure:</b></td><td>{{:data.external_pressure}} kPa</td></tr>
+				<tr><td><b>Command:</b></td><td>{{:helper.link('Toggle Power', 'power', {'out_toggle_power' : 1})}}{{:helper.link('Set Pressure', null, {'s_out_set_pressure' : 1})}}{{:helper.link('Default Pressure', null, {'s_set_default' : 1})}}{{:helper.link('Refresh', null, {'out_refresh_status' : 1})}}</td></tr>
+			{{/if}}
+		{{else}}
+			<tr><td><span class='brute'>ERROR: Can't locate tagged vent</span></td></tr>
+			<tr><td><b>Command:</b></td><td>{{:helper.link('Toggle Power', 'power', {'out_toggle_power' : 1}, 'disabled')}}{{:helper.link('Set Pressure', null, {'s_out_set_pressure' : 1}, 'disabled')}}{{:helper.link('Default Pressure', null, {'s_set_default' : 1}, 'disabled')}}{{:helper.link('Refresh', null, {'out_refresh_status' : 1})}}</td></tr>
+		{{/if}}
+		</table>		
+	{{/if}}
+{{else data.screen == 2}}
+	<b>Console Settings</b>
+	<table>
+		<tr><td><b>Frequency:</b></td><td>{{:data.frequency}}</td><td>{{:helper.link('', 'pencil', {'set_frequency' : 1})}}</td></tr>
+		<tr><td><b>Vent Tag:</b></td><td>{{:data.output_tag}}</td><td>{{:helper.link('', 'pencil', {'set_output_tag' : 1})}}</td></tr>
+		<tr><td><b>Sensor Name:</b></td><td>{{:data.sensor_name}}</td><td>{{:helper.link('', 'pencil', {'set_sensor_name' : 1})}}</td></tr>
+		<tr><td><b>Sensor Tag:</b></td><td>{{:data.sensor_tag}}</td><td>{{:helper.link('', 'pencil', {'set_sensor_tag' : 1})}}</td></tr>
+	</table>
+{{/if}}

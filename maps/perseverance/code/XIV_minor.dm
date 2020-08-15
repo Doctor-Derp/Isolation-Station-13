@@ -1,6 +1,6 @@
 //all the minor overrides and some new stuff
 
-/decl/flooring/reinforced/redgrid//blackgrid is black instead of red and I have no idea why, but I'm not really willing to go diggin through this damned code to find out becauseIcouldntfinditafterafewhours
+/decl/flooring/reinforced/redgrid//blackgrid is black instead of red despite its red sprite in the map editor, so here's something that's actually red
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "rcircuit"
@@ -43,6 +43,10 @@
 /obj/machinery/door/airlock/autoname/supply
 	door_color = COLOR_PALE_ORANGE
 	stripe_color = COLOR_BEASTY_BROWN
+
+/obj/machinery/door/airlock/autoname/research
+	door_color = COLOR_WHITE
+	stripe_color = COLOR_BOTTLE_GREEN
 
 /obj/machinery/door/airlock/hatch/ventilation
 	name = "Ventilation Hatch"
@@ -191,10 +195,19 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/XIV
 	req_access = list()
 
+/obj/structure/closet/secure_closet/freezer/empty
+	name = "refrigerator"
+	icon = 'icons/obj/closets/fridge.dmi'
+	closet_appearance = null
+	req_access = list()
+
+/turf/simulated/floor/reinforced/airmix/XIV
+	initial_gas = list(GAS_OXYGEN = 3 * MOLES_O2ATMOS, GAS_NITROGEN = 3 * MOLES_N2ATMOS)
+
 // This is for the multi-z gas tanks
 
 /turf/simulated/open/XIV/airmix
-	initial_gas = list(GAS_OXYGEN = MOLES_O2ATMOS, GAS_NITROGEN = MOLES_N2ATMOS)
+	initial_gas = list(GAS_OXYGEN = 3 * MOLES_O2ATMOS, GAS_NITROGEN = 3 * MOLES_N2ATMOS)
 
 /turf/simulated/open/XIV/hydrogen
 	initial_gas = list(GAS_HYDROGEN = ATMOSTANK_HYDROGEN)
@@ -279,3 +292,8 @@ obj/machinery/conveyor/XIV/scitoshuttle
 
 obj/machinery/conveyor_switch/oneway/XIV/scitoshuttle
 	id = "scitoshuttle"
+
+obj/machinery/atmospherics/unary/outlet_injector/waste
+	volume_rate = 700
+	icon_state = "on"
+	use_power = 1
