@@ -1,4 +1,4 @@
-//Made by Domic(mapping, bad coding, spriting), additional credits to: Sibg (mapping) and DoctorDerp (spriting). If you have any questions or feedback, ping me on discord (Domic#7513)
+//Made by Domic(mapping, bad coding, spriting), additional credits to: Sibg (mapping), S m i l e (spriting) and DoctorDerp (spriting).
 
 #if !defined(using_map_DATUM)
 	#include "XIV_unit_testing.dm"
@@ -21,6 +21,7 @@
 	#include "code/XIV_blackbox.dm"
 	#include "code/XIV_radiomodified.dm"
 	#include "code/XIV_bsdrive.dm"
+	#include "code/XIV_loadouts.dm"
 
 	#include "Perseverance_1.dmm"
 	#include "Perseverance_2.dmm"

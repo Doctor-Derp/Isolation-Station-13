@@ -95,7 +95,7 @@
 /obj/structure/vent/proc/climb(mob/M, obj/item/I = null)
 	var/area/area = get_area(usr)
 
-	if(allowed_directions == UP && area.has_gravity() && !usr.can_overcome_gravity()) // What in the world makes you think I know what I'm doing?
+	if(allowed_directions == UP && area.has_gravity() && !usr.can_overcome_gravity())
 		to_chat(usr, "<span class='warning'>Gravity stops you from moving upward.</span>")
 		return
 
@@ -197,6 +197,16 @@
 /obj/structure/vent/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density
 
+//we don't want people moving past vents that quickly
+/turf/simulated/open/CanZPass(atom/A, direction)
+	if(locate(/obj/structure/catwalk, src) || locate(/obj/structure/vent, src))
+		if(z == A.z)
+			if(direction == DOWN)
+				return 0
+		else if(direction == UP)
+			return 0
+	return 1
+
 //defining the actual vents
 
 /obj/structure/vent/down
@@ -215,6 +225,7 @@
 	desc = "It's a vent. Really dark up there."
 	allowed_directions = UP
 	alpha = 100
+	layer = 5//it's above everything else, except ghosts, and areas
 
 /obj/structure/vent/up/distribution
 	icon_state = "ventdist"

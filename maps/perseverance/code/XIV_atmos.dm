@@ -1,4 +1,5 @@
-// Copy-pasting makes it easier (and less soul-sucking)
+// A lot of this is a test to see if stuff is easier this way, results were okay, but using strongdmm makes it much easier so this is not really necessary
+//I dont think I'm removing it anytime soon, though
 
 //--------------------------AIRLOCKS----------------------------------
 
@@ -238,12 +239,10 @@ obj/machinery/air_sensor/XIV/xenoflora
 obj/machinery/atmospherics/unary/vent_pump/tank/XIV/airtank1
 	id_tag = "airtank1_out"
 	pump_direction = 0
-	use_power = 0//backup tank, best keep it closed for now
 
 obj/machinery/atmospherics/unary/outlet_injector/XIV/airtank1
 	id = "airtank1_in"
 	volume_rate = 700
-	use_power = 0
 
 obj/machinery/air_sensor/XIV/airtank1
 	id_tag = "airtank1_sensor"
@@ -265,6 +264,7 @@ obj/machinery/air_sensor/XIV/airtank2
 	build_path = /obj/machinery/computer/air_control/XIV/ventilation
 
 /obj/machinery/computer/air_control/XIV/ventilation
+	name = "Vent control console"
 	out_pressure_mode = 1
 
 /obj/machinery/computer/air_control/XIV/ventilation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -272,7 +272,7 @@ obj/machinery/air_sensor/XIV/airtank2
 	data["systemname"] = name
 	get_console_data()
 	if(!ui)
-		ui = new(user, src, ui_key, "ventcontrol.tmpl", data["systemname"], 800, 800)
+		ui = new(user, src, ui_key, "ventcontrol.tmpl", data["systemname"], 800, 600)//custom template which is actually just a downgraded normal template, yay!
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -280,15 +280,13 @@ obj/machinery/air_sensor/XIV/airtank2
 /obj/machinery/atmospherics/unary/vent_pump/tank/XIV/ventilation
 	pressure_checks = 1
 	pressure_checks_default = 1
-	use_power = 0//due to big power draw, best activated manually
+	use_power = 0//due to big power draw, best activated manually (up to approx. 1.5 MW, actually)
 
 /obj/machinery/atmospherics/unary/vent_pump/tank/XIV/ventilation/inlet
 	icon_state = "map_vent_out"
 	id_tag = "ventilation_in"
 	external_pressure_bound = 1.1 * ONE_ATMOSPHERE
-	external_pressure_bound_default = 1.1 * ONE_ATMOSPHERE
-	internal_pressure_bound_default = 1.1 * ONE_ATMOSPHERE//I can't believe this, but the consoles actually take this as the default pressure no matter if it's set to external or internal
-	use_power = 0
+	external_pressure_bound_default = 1.1 * ONE_ATMOSPHERE//turns out defaults don't matter at all when being operated by the air control computer, "default pressure" is always approx. 4500 kPa
 
 obj/machinery/air_sensor/XIV/ventilation_inlet
 	id_tag = "VI_Sensor"
@@ -299,12 +297,124 @@ obj/machinery/air_sensor/XIV/ventilation_inlet
 	id_tag = "ventilation_out"
 	external_pressure_bound = 0.9 * ONE_ATMOSPHERE
 	external_pressure_bound_default = 0.9 * ONE_ATMOSPHERE
-	internal_pressure_bound_default = 1.1 * ONE_ATMOSPHERE
 
 obj/machinery/air_sensor/XIV/ventilation_outlet
 	id_tag = "VO_Sensor"
 
-//--------------------------FUEL MIXERS------------------------------
+//--------------------------FUEL STUFF------------------------------
 
-/obj/machinery/atmospherics/omni/mixer/XIV/fuelbay
-	tag_south = 2
+//storage tanks
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel
+	icon_state = "off"
+	use_power = 0
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel
+	use_power = 0
+
+//port
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/CO2_1
+	id_tag = "CO2_1_out"
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel/CO2_1
+	id = "CO2_1_in"
+
+obj/machinery/air_sensor/XIV/fuel/CO2_1
+	id_tag = "CO2_1_sensor"
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/H2_1
+	id_tag = "H2_1_out"
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel/H2_1
+	id = "H2_1_in"
+
+obj/machinery/air_sensor/XIV/fuel/H2_1
+	id_tag = "H2_1_sensor"
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/O2_1
+	id_tag = "O2_1_out"
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel/O2_1
+	id = "O2_1_in"
+
+obj/machinery/air_sensor/XIV/fuel/O2_1
+	id_tag = "O2_1_sensor"
+
+//starboard
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/CO2_2
+	id_tag = "CO2_2_out"
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel/CO2_2
+	id = "CO2_2_in"
+
+obj/machinery/air_sensor/XIV/fuel/CO2_2
+	id_tag = "CO2_2_sensor"
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/H2_2
+	id_tag = "H2_2_out"
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel/H2_2
+	id = "H2_2_in"
+
+obj/machinery/air_sensor/XIV/fuel/H2_2
+	id_tag = "H2_2_sensor"
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/O2_2
+	id_tag = "O2_2_out"
+
+obj/machinery/atmospherics/unary/outlet_injector/XIV/fuel/O2_2
+	id = "O2_2_in"
+
+obj/machinery/air_sensor/XIV/fuel/O2_2
+	id_tag = "O2_2_sensor"
+
+//fuel combustion chambers
+
+obj/machinery/atmospherics/unary/vent_pump/high_volume/XIV/fuel/combust
+	icon_state = "map_vent_out"
+	external_pressure_bound = MAX_PUMP_PRESSURE
+	external_pressure_bound_default = MAX_PUMP_PRESSURE
+	use_power = 1
+	pump_direction = 1
+	pressure_checks = 1//check exterior only
+	pressure_checks_default = 1
+
+//left(port) to right(starboard), C_1 to C_8
+
+obj/machinery/air_sensor/XIV/fuel/combust/c1
+	id_tag = "C_1_sensor"
+
+obj/machinery/air_sensor/XIV/fuel/combust/c2
+	id_tag = "C_2_sensor"
+
+obj/machinery/air_sensor/XIV/fuel/combust/c3
+	id_tag = "C_3_sensor"
+
+obj/machinery/air_sensor/XIV/fuel/combust/c4
+	id_tag = "C_4_sensor"
+//This goes up to 8, the rest was done in the editor
+
+//experimental gas thruster
+
+/obj/machinery/atmospherics/pipe/simple/visible/fuel//why don't we make these more useful?
+	maximum_pressure = 1500*ONE_ATMOSPHERE
+	fatigue_pressure = 950*ONE_ATMOSPHERE
+	alert_pressure = 950*ONE_ATMOSPHERE
+
+/obj/machinery/atmospherics/unary/engine/experimental
+	name = "experimental rocket nozzle"
+	desc = "Experimental rocket nozzle, expelling gas at hypersonic velocities to propell the ship. This one has been modified to provide better thrust at high pressures."
+	icon = 'icons/obj/ship_engine.dmi'
+	icon_state = "nozzle"
+
+/obj/machinery/atmospherics/unary/engine/experimental/calculate_thrust(datum/gas_mixture/propellant, used_part = 1)
+	return round(sqrt(propellant.get_mass() * used_part) + (air_contents.return_pressure() / 50000),0.1)
+
+/obj/item/weapon/stock_parts/circuitboard/unary_atmos/engine/experimental
+	name = T_BOARD("experimental gas thruster")
+	build_path = /obj/machinery/atmospherics/unary/engine/experimental
+	origin_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 4)
+	additional_spawn_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 1,
+		/obj/item/weapon/stock_parts/micro_laser = 1,
+		/obj/item/weapon/stock_parts/capacitor = 2)

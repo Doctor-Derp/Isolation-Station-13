@@ -29,6 +29,10 @@
 	gloves = /obj/item/clothing/gloves/thick/duty
 	belt = /obj/item/weapon/storage/belt/utility/full/XIV
 
+/decl/hierarchy/outfit/job/isolation/senior_engineer/New()
+	..()
+	BACKPACK_OVERRIDE_ENGINEERING
+
 //engineer
 /decl/hierarchy/outfit/job/isolation/techie
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
@@ -50,7 +54,7 @@
 	..()
 	BACKPACK_OVERRIDE_MEDICAL
 
-//fabtec
+//sci-guy
 /decl/hierarchy/outfit/job/isolation/science
 	name = OUTFIT_JOB_NAME("Perseverance Scientist")
 	uniform = /obj/item/clothing/under/rank/scientist_new

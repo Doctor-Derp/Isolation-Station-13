@@ -18,6 +18,9 @@
 	light_color = COLOR_RED
 	initial_flooring = /decl/flooring/reinforced/redgrid
 
+/obj/machinery/door/airlock/hatch/command
+	stripe_color = COLOR_COMMAND_BLUE
+
 /obj/machinery/door/airlock/hatch/autoname/command
 	stripe_color = COLOR_COMMAND_BLUE
 
@@ -48,7 +51,7 @@
 	door_color = COLOR_WHITE
 	stripe_color = COLOR_BOTTLE_GREEN
 
-/obj/machinery/door/airlock/hatch/ventilation
+/obj/machinery/door/airlock/hatch/maintenance/ventilation
 	name = "Ventilation Hatch"
 	stripe_color = COLOR_ORANGE
 
@@ -202,12 +205,12 @@
 	req_access = list()
 
 /turf/simulated/floor/reinforced/airmix/XIV
-	initial_gas = list(GAS_OXYGEN = 3 * MOLES_O2ATMOS, GAS_NITROGEN = 3 * MOLES_N2ATMOS)
+	initial_gas = list(GAS_OXYGEN = 2 * MOLES_O2ATMOS, GAS_NITROGEN = 2 * MOLES_N2ATMOS)
 
 // This is for the multi-z gas tanks
 
 /turf/simulated/open/XIV/airmix
-	initial_gas = list(GAS_OXYGEN = 3 * MOLES_O2ATMOS, GAS_NITROGEN = 3 * MOLES_N2ATMOS)
+	initial_gas = list(GAS_OXYGEN = 2 * MOLES_O2ATMOS, GAS_NITROGEN = 2 * MOLES_N2ATMOS)
 
 /turf/simulated/open/XIV/hydrogen
 	initial_gas = list(GAS_HYDROGEN = ATMOSTANK_HYDROGEN)
@@ -222,6 +225,9 @@
 	initial_gas = null
 
 /turf/simulated/floor/tiled/techfloor/grid/airless
+	initial_gas = null
+
+/turf/simulated/floor/tiled/monotile/airless
 	initial_gas = null
 
 /turf/simulated/floor/tiled/dark/monotile/airless
@@ -297,3 +303,23 @@ obj/machinery/atmospherics/unary/outlet_injector/waste
 	volume_rate = 700
 	icon_state = "on"
 	use_power = 1
+
+/mob/Check_Dense_Object() //this is from mob_movement.dm, there's a bug where open spaces are not checked so magboots treat them as solid objects they can grip. That's a nope from me.
+
+	var/shoegrip = Check_Shoegrip()
+
+	for(var/turf/simulated/T in trange(1,src)) //we only care for non-space turfs
+		if(T.density)	//walls work
+			return 1
+		else
+			var/area/A = T.loc
+			if(A.has_gravity || (shoegrip && !istype(T, /turf/simulated/open)))//only change I made is here. Works like a charm
+				return 1
+
+	for(var/obj/O in orange(1, src))
+		if(istype(O, /obj/structure/lattice))
+			return 1
+		if(O && O.density && O.anchored)
+			return 1
+
+	return 0

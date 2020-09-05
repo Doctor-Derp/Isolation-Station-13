@@ -1,3 +1,5 @@
+//bsdrivestatus and bsdrivedelay are in evacuation_bspods.dm
+
 /obj/machinery/bluespacedrive
 	name = "Bluespace drive"
 	desc = "This complex device permits a safe entry into bluespace."
@@ -33,7 +35,7 @@
 		phcheck = 0
 		overlays = list("ind0")
 
-	if (air.total_moles - air.gas[GAS_PHORON] > 5)
+	if (air.total_moles - air.gas[GAS_PHORON] > 10)
 		contaminated = 1
 		overlays = list("uhoh")
 	else
@@ -79,7 +81,7 @@
 		if (phcheck != 1 || contaminated == 1)
 			mode = 0
 			log_and_message_admins("The bluespace drive encountered a critical error at [x], [y], [z], and will now detonate.")
-			GLOB.global_announcer.autosay("WARNING: BLUESPACE TEATHER SEVERED.", "Bluespace monitor")
+			GLOB.global_announcer.autosay("WARNING: BLUESPACE TEATHER SEVERED.", "Auxiliary bluespace monitor")
 			bigboom()
 		else if (bsdrivestatus != -1 && bsdrivestatus != 4)
 			bsdrivestatus = 2

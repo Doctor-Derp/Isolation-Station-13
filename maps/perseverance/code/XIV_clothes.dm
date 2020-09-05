@@ -16,10 +16,9 @@
 		)
 
 /obj/item/clothing/under/XIV/xionplus
-	name = "xion padded suit"
+	name = "xion command suit"
 	desc = "A special suit used by higher-ranking xion employees."
-	icon = 'maps/perseverance/icons/clothes/XIVunder.dmi'
-	icon_state = "manage_s"
+	icon_state = "manage"
 	worn_state = "manage_s"
 	armor = list(
 		energy = ARMOR_ENERGY_SMALL,
