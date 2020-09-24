@@ -1,4 +1,4 @@
-//Made by Domic(mapping, bad coding, spriting), additional credits to: Sibg (mapping), S m i l e (spriting) and DoctorDerp (spriting).
+//Made by Domic(mapping, bad coding, spriting), Sibg (mapping), S m i l e (spriting) and DoctorDerp (spriting).
 
 #if !defined(using_map_DATUM)
 	#include "XIV_unit_testing.dm"
@@ -25,6 +25,7 @@
 
 	#include "Perseverance_1.dmm"
 	#include "Perseverance_2.dmm"
+	#include "z1transit.dmm"
 
 	#include "jobs/XIV_access.dm"
 	#include "jobs/XIV_IDs.dm"

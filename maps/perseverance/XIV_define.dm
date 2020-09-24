@@ -35,8 +35,8 @@
 	shuttle_recall_message = "Attention all hands: Jump sequence aborted, return to normal operating conditions."
 
 	use_overmap = 1
-	num_exoplanets = 0
-	away_site_budget = 0
+	num_exoplanets = 1
+	away_site_budget = 3
 	welcome_sound = 'sound/AI/welcome.ogg'
 
 	department_money = 0

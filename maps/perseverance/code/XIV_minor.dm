@@ -1,4 +1,4 @@
-//all the minor overrides and some new stuff
+//all the minor overrides and a bunch of new stuff I decided not to put in a seperate thingy
 
 /decl/flooring/reinforced/redgrid//blackgrid is black instead of red despite its red sprite in the map editor, so here's something that's actually red
 	name = "processing strata"
@@ -180,6 +180,9 @@
 /turf/simulated/wall/titanium/hull
 	paint_color = COLOR_HULL
 
+/turf/simulated/wall/titanium/orange
+	paint_color = COLOR_DARK_ORANGE
+
 /turf/simulated/wall/r_wall/white
 	paint_color = COLOR_WHITE
 
@@ -256,6 +259,11 @@
 	uncreated_component_parts = list(
 		/obj/item/weapon/stock_parts/smes_coil/super_io = 1)
 
+// Shuttle SMES, higher capacity
+/obj/machinery/power/smes/buildable/preset/XIV/shuttles
+	uncreated_component_parts = list(
+		/obj/item/weapon/stock_parts/smes_coil/super_capacity =	 1)
+
 //Crates
 
 /obj/structure/closet/crate/actual_radiation_gear
@@ -323,3 +331,44 @@ obj/machinery/atmospherics/unary/outlet_injector/waste
 			return 1
 
 	return 0
+
+/obj/structure/closet/toolcloset/XIV/New()//normal closet, with removed insulateds
+	..()
+	if(prob(40))
+		new /obj/item/clothing/suit/storage/hazardvest(src)
+	if(prob(70))
+		new /obj/item/device/flashlight(src)
+	if(prob(70))
+		new /obj/item/weapon/screwdriver(src)
+	if(prob(70))
+		new /obj/item/weapon/wrench(src)
+	if(prob(70))
+		new /obj/item/weapon/weldingtool(src)
+	if(prob(70))
+		new /obj/item/weapon/crowbar(src)
+	if(prob(70))
+		new /obj/item/weapon/wirecutters(src)
+	if(prob(70))
+		new /obj/item/device/t_scanner(src)
+	if(prob(20))
+		new /obj/item/weapon/storage/belt/utility(src)
+	if(prob(30))
+		new /obj/item/stack/cable_coil/random(src)
+	if(prob(30))
+		new /obj/item/stack/cable_coil/random(src)
+	if(prob(30))
+		new /obj/item/stack/cable_coil/random(src)
+	if(prob(20))
+		new /obj/item/device/multitool(src)
+	if(prob(40))
+		new /obj/item/clothing/head/hardhat(src)
+
+/turf/space/transit/east/Initialize()
+	..()
+	if(!phase_shift_by_y)
+		phase_shift_by_y = get_cross_shift_list(15)
+
+	var/y_shift = phase_shift_by_y[src.y % (phase_shift_by_y.len - 1) + 1]
+	var/transit_state = (world.maxx - src.x + y_shift)%15 + 1
+
+	icon_state = "speedspace_ew_[transit_state]"

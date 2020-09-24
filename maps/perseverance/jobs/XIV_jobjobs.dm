@@ -14,7 +14,7 @@
 	alt_titles = list()
 	ideal_character_age = 30
 	outfit_type = /decl/hierarchy/outfit/job/isolation/manager
-	access = list(access_XIV, access_engine, access_bridge, access_medical, access_change_ids, access_engine_equip, access_tcomsat, access_network, access_atmospherics, access_research, access_robotics, access_external_airlocks)
+	access = list(access_XIV,access_captain, access_engine, access_bridge, access_medical, access_change_ids, access_engine_equip, access_tcomsat, access_network, access_atmospherics, access_research, access_robotics, access_external_airlocks)
 	allowed_branches = list(
 		/datum/mil_branch/civilian
 	)

@@ -12,16 +12,15 @@
 							/obj/item/weapon/stock_parts/subspace/crystal = 1,
 							/obj/item/weapon/stock_parts/manipulator = 2,
 							/obj/item/stack/material/phoron = 6)
-//it's a complex device, I guess
 
 /obj/machinery/telecomms/server/blackbox
 	name = "Blackbox"
 	icon = 'maps/perseverance/icons/obj/blackbox.dmi'
 	icon_state = "blackbox"//the code switches this out with blackbox_off, too lazy to fix it tho
-	desc = "A sturdy machine which utilizes phoron to record subspace data without needing power, with a delay. It has been modified to interface with modern computers."
+	desc = "A sturdy machine which utilizes phoron to record subspace data without needing power, with a relatively long delay. It has been modified to interface with modern computers."
 	id = "Blackbox"
 	network = "Blackbox"
-	integrity = 10000 //I did say it was sturdy
+	integrity = 1000
 	density = 1
 	anchored = 1
 	idle_power_usage = 0
@@ -51,7 +50,7 @@
 
 /obj/machinery/telecomms/server/blackbox/receive_signal(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
-	sleep (400)
+	sleep (3000)//5 minutes
 
 	signal.data["compression"] = 0
 
