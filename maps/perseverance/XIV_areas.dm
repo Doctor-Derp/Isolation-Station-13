@@ -295,7 +295,7 @@ area/ship/perseverance/bridge/bluespacedrive
 	name = "\improper Perseverance Bluespace Drive"
 	icon_state = "engineering"
 	color = COLOR_BLUE_LIGHT
-	req_access = list(access_XIV, access_engine, access_bridge)
+	req_access = list(access_XIV, access_engine, access_tcomsat)
 
 /area/ship/perseverance/hall/bsport
 	name = "\improper Perseverance Port Bluespace Drive Access"
@@ -322,7 +322,7 @@ area/ship/perseverance/sec/bot/saft
 	icon_state = "asmaint"
 
 area/ship/perseverance/sec/bot/pstore
-	name = "Perseverance Port Engineering Storage Room"
+	name = "Perseverance Waste Disposal"
 	icon_state = "pmaint"
 
 area/ship/perseverance/sec/bot/sstore

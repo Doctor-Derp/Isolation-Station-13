@@ -153,6 +153,14 @@
 /obj/structure/wall_frame/orange
 	paint_color = COLOR_DARK_ORANGE
 
+/obj/structure/wall_frame/titanium/prepainted
+	paint_color = COLOR_GUNMETAL
+
+/obj/effect/wallframe_spawn/titanium/prepainted
+	name = "white reinforced wall frame window spawner"
+	icon_state = "r-wingrille"
+	frame_path = /obj/structure/wall_frame/titanium/prepainted
+
 // For the fuel bay
 
 /obj/effect/wallframe_spawn/reinforced/orange
@@ -160,7 +168,7 @@
 	icon_state = "r-wingrille"
 	frame_path = /obj/structure/wall_frame/orange
 
-// Setting these two up as hull should make them do the special space-facing decay effet. Addendum: it does! It actually does! Seems to work on area check
+// Setting these two up as hull should make them do the special space-facing decay effet. Addendum: no effect on wallframes
 /obj/effect/wallframe_spawn/reinforced/hull/white
 	name = "white reinforced wall frame window spawner"
 	icon_state = "r-wingrille"
@@ -179,6 +187,9 @@
 
 /turf/simulated/wall/titanium/hull
 	paint_color = COLOR_HULL
+
+/turf/simulated/wall/r_titanium/black
+	paint_color = COLOR_GUNMETAL
 
 /turf/simulated/wall/titanium/orange
 	paint_color = COLOR_DARK_ORANGE
@@ -200,6 +211,9 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen/XIV
 	req_access = list()
+
+/turf/simulated/floor/shuttle_ceiling/dark
+	color = COLOR_GUNMETAL
 
 /obj/structure/closet/secure_closet/freezer/empty
 	name = "refrigerator"
@@ -293,7 +307,7 @@
 	icon = 'maps/perseverance/icons/obj/tanks.dmi'
 	icon_state = "emergency_double_blue"
 
-//The editor is annoying, I'm not using it anymore, dont really think doing this will cause many issues
+//Should be removed at some point, but it works and should not cause any trouble
 
 obj/machinery/conveyor/XIV/shuttletosci
 	id = "shuttletosci"
@@ -312,7 +326,7 @@ obj/machinery/atmospherics/unary/outlet_injector/waste
 	icon_state = "on"
 	use_power = 1
 
-/mob/Check_Dense_Object() //this is from mob_movement.dm, there's a bug where open spaces are not checked so magboots treat them as solid objects they can grip. That's a nope from me.
+/mob/Check_Dense_Object() //this is from mob_movement.dm, there's a bug where open spaces are not checked so magboots treat them as solid objects they can grip. That's a nope from me, time to override
 
 	var/shoegrip = Check_Shoegrip()
 
@@ -363,6 +377,7 @@ obj/machinery/atmospherics/unary/outlet_injector/waste
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 
+//uses New() instead of Initialize(), and it does not work (except in the Torch map, somehow). Well, this fixes it.
 /turf/space/transit/east/Initialize()
 	..()
 	if(!phase_shift_by_y)
@@ -372,3 +387,22 @@ obj/machinery/atmospherics/unary/outlet_injector/waste
 	var/transit_state = (world.maxx - src.x + y_shift)%15 + 1
 
 	icon_state = "speedspace_ew_[transit_state]"
+
+//let's make railings a bit better, shall we? This is badly done, by the way, problably more efficient ways to do this.
+/obj/structure/railing/on_update_icon(var/update_neighbors = TRUE)
+	. = ..()
+
+	if (dir == 2)
+		layer = ABOVE_HUMAN_LAYER
+	else
+		layer = OBJ_LAYER
+
+/obj/structure/railing/do_climb(var/mob/living/user)
+	. = ..()
+	layer_shift()
+
+/obj/structure/railing/proc/layer_shift()
+	if (layer == ABOVE_HUMAN_LAYER)
+		layer = OBJ_LAYER
+		sleep (1.5)
+		layer = ABOVE_HUMAN_LAYER

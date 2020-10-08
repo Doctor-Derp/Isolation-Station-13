@@ -10,7 +10,7 @@
 	station_short = "Perseverance"
 
 	dock_name     = "STNDRD"
-	boss_name     = "Xion Headquarters"
+	boss_name     = "Headquarters"
 	boss_short    = "HQ"
 	company_name  = "Xion Industries"
 	company_short = "Xion"
@@ -35,7 +35,7 @@
 	shuttle_recall_message = "Attention all hands: Jump sequence aborted, return to normal operating conditions."
 
 	use_overmap = 1
-	num_exoplanets = 1
+	num_exoplanets = 0
 	away_site_budget = 3
 	welcome_sound = 'sound/AI/welcome.ogg'
 

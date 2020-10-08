@@ -62,12 +62,39 @@
 	name = "In Transit"
 	landmark_tag = "nav_transit_cargo"
 
+//Dagger
+
+/datum/shuttle/autodock/overmap/scout
+	name = "Dagger"
+	move_time = 30
+	shuttle_area = list(/area/shuttle/perseverance/scouting)
+	dock_target = "dagger_docking_controller"
+	current_location = "nav_dock_scout"
+	landmark_transition = "nav_transit_scout"
+	range = 0
+	warmup_time = 10
+	logging_home_tag = "nav_dock_scout"
+	logging_access = access_XIV
+	ceiling_type = /turf/simulated/floor/shuttle_ceiling/dark
+
+/obj/machinery/computer/shuttle_control/explore/scout
+	name = "shuttle control console"
+	shuttle_tag = "Dagger"
+	req_access = list(access_bridge)
+
+/obj/effect/shuttle_landmark/perseverance/dock/scout
+	name = "Dagger Dock"
+	landmark_tag = "nav_dock_scout"
+	docking_controller = "dagger_shuttle_dock"
+	base_area = /area/space
+	base_turf = /turf/space
+
+/obj/effect/shuttle_landmark/perseverance/transit/scout
+	name = "In Transit"
+	landmark_tag = "nav_transit_scout"
+
 //generic landmarks
 
 /obj/effect/shuttle_landmark/perseverance/bottom/fore
 	name = "Space north of the bottom deck"
 	landmark_tag = "nav_bottom_fore"
-
-/obj/effect/shuttle_landmark/perseverance/bottom/aft
-	name = "Space south of the bottom deck"
-	landmark_tag = "nav_bottom_aft"
